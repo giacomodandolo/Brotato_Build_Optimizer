@@ -1,0 +1,18 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "Item": "text",
+    "type": "text",
+    "damage_type": "multitext",
+    "bakk": "text",
+    "melee_scaling": "number",
+    "ranged_scaling": "number",
+    "elemental": "number",
+    "armor": "number",
+    "engineering": "number",
+    "range": "number",
+    "attack_speed": "number"
+  }
+}
