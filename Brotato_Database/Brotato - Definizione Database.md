@@ -1,3 +1,0 @@
-[[Weapons]]
-[[Items]]
-[[Characters]]
