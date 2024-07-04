@@ -3,6 +3,7 @@ import requests
 from weapon import WeaponClass
 
 MOD_WEAPONS = 12
+SCALING_TYPES = ["Level", "Melee Damage", "Ranged Damage", "Elemental Damage", "Max HP", "Armor", "Engineering", "Range", "Attack Speed", "Speed"]
 
 # Request the Weapons page of the wiki
 requestPage = requests.get("https://brotato.wiki.spellsandguns.com/Weapons")
@@ -20,27 +21,52 @@ weapon = None
 allWeapons = []
 for tdIndex, TD in enumerate(allTDs):
     relativePosition = tdIndex % MOD_WEAPONS
-
+    values = allTDs[tdIndex].text
+    
     match relativePosition:
         # N
         case 0:
             weapon = WeaponClass()
-            values = allTDs[tdIndex].text
             weapon.setN(values)
             pass
         # C
         case 1:
-            values = allTDs[tdIndex].text
             valuesSplit = values.split(", ")
             weapon.setC(valuesSplit)
             pass
         # BD, xSc
         case 2:
-
+            valuesSplit = values.split("\n")
+            valueSet = []
+            weapon.clearSc()
+            for i, item in enumerate(valuesSplit[1:5]):
+                itemSplit = item.split("(")
+                counter = 0
+                if(item != "-" and item != " -"):
+                    scalingSplit = itemSplit[1].split("%")
+                    if("x" in itemSplit[0]):
+                        itemSplitSpec = itemSplit[0].split("x")
+                        itemSplit[0] = int(itemSplitSpec[0])*int(itemSplitSpec[1])
+                    valueSet.append(int(itemSplit[0]))
+                else:
+                    valueSet.append(-1)
+                for j, itemS in enumerate(SCALING_TYPES):
+                    if(item != "-" and item != " -"):
+                        if(itemS == "Level"):
+                            allScaling = allTDs[tdIndex].find("img", attrs={"alt": itemS + ".png"})
+                        else:
+                            allScaling = allTDs[tdIndex].find("a", attrs={"title": itemS})
+                        if(allScaling != None):
+                            weapon.addSc(j, float(scalingSplit[counter])/100)
+                            counter = counter + 1
+                        else:
+                            weapon.addSc(j, -1)
+                    else:
+                        weapon.addSc(j, -1)
+            weapon.setBD(valueSet)
             pass
         # AS
         case 3:
-            values = allTDs[tdIndex].text
             valueSplit = values.split("\n")
             valueSet = []
             for i, item in enumerate(valueSplit[1:5]):
@@ -52,7 +78,6 @@ for tdIndex, TD in enumerate(allTDs):
             pass
         # CD, CC
         case 5:
-            values = allTDs[tdIndex].text
             valueSplit = values.split("\n")
             valueSetCD = []
             valueSetCC = []
@@ -69,7 +94,6 @@ for tdIndex, TD in enumerate(allTDs):
             pass
         # R
         case 6:
-            values = allTDs[tdIndex].text
             valueSplit = values.split("\n")
             valueSet = []
             for i, item in enumerate(valueSplit[1:5]):
@@ -81,7 +105,6 @@ for tdIndex, TD in enumerate(allTDs):
             pass
         # K
         case 7:
-            values = allTDs[tdIndex].text
             valueSplit = values.split("\n")
             valueSet = []
             for i, item in enumerate(valueSplit[1:5]):
@@ -93,7 +116,6 @@ for tdIndex, TD in enumerate(allTDs):
             pass
         # L
         case 8:
-            values = allTDs[tdIndex].text
             valueSplit = values.split("\n")
             valueSet = []
             for i, item in enumerate(valueSplit[1:5]):
@@ -105,11 +127,10 @@ for tdIndex, TD in enumerate(allTDs):
             pass
         # SE
         case 9:
-            
+            weapon.setSE(values)
             pass
         # BP
         case 10:
-            values = allTDs[tdIndex].text
             valueSplit = values.split("\n")
             valueSet = []
             for i, item in enumerate(valueSplit[1:5]):
@@ -123,3 +144,6 @@ for tdIndex, TD in enumerate(allTDs):
         # Not Important TDs
         case _:
             pass
+
+for item in allWeapons:
+    print(item)

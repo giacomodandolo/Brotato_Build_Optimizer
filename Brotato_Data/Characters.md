@@ -1,3 +1,4 @@
+#scraping 
 Most characters can hold up to 6 weapons. 
 Some exceptions are:
 - One Armed, who can only hold 1; 
