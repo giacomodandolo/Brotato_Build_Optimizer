@@ -1,4 +1,4 @@
-#scraping #weapons #items #characters 
+#scraping 
 In the following documents, we will explain the methodology for Web Scraping of each listed page of the relative [Brotato Wiki](https://brotato.wiki.spellsandguns.com/Brotato_Wiki|).
 Specifically, we shall explain the following points:
 - the necessary informations and the relative data structure;
@@ -53,6 +53,6 @@ attribute = "requestedAttribute"
 extractedAttributeValue = extractedElement[attribute]
 ```
 # CONTENTS
-	[[1. Weapons]]
-	[[2. Items]]
-	[[3. Characters]]
+	[[Weapons]]
+	[[Items]]
+	[[Characters]]

@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "360855495aad2ab8",
+        "id": "3e2ccef53f8e96a8",
         "type": "tabs",
         "children": [
           {
-            "id": "821deabc7632a4cc",
+            "id": "3199bb94a8efc636",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -138,24 +138,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "821deabc7632a4cc",
+  "active": "3199bb94a8efc636",
   "lastOpenFiles": [
+    "Home.md",
+    "Weapons.md",
+    "MD/Weapons/Cacti Club.md",
+    "Items.md",
+    "CSV/weapons.csv",
+    "CSV/Nuovo Documento di testo.txt",
+    "Characters.md",
+    "MD/Weapons/Claw.md",
+    "MD/Weapons/Crossbow.md",
+    "MD/Weapons/Circular Saw.md",
+    "MD/Weapons/Chain Gun.md",
+    "MD/Weapons/Chopper.md",
+    "MD/Weapons/Wrench.md",
+    "MD/Weapons/Wand.md",
+    "MD/Weapons/Torch.md",
+    "MD/Weapons/Thunder Sword.md",
+    "MD/Weapons/Thief Dagger.md",
+    "MD/Weapons/Taser.md",
+    "MD/Weapons/Sword.md",
+    "MD/Weapons/Stick.md",
+    "MD/Weapons/Spiky Shield.md",
+    "MD/Weapons/Sniper Gun.md",
+    "MD/Weapons/Spear.md",
+    "MD/Weapons/SMG.md",
+    "MD/Weapons/Slingshot.md",
+    "MD/Weapons/Shuriken.md",
+    "MD/Weapons/Shredder.md",
+    "MD/Weapons",
     "MD",
     "Nuova cartella",
     "CSV",
-    "Home.md",
-    "Characters.md",
-    "Items.md",
-    "Weapons.md",
-    "Code/Weapon/Weapons.md",
     "Code/Weapon/__pycache__/weapon.cpython-311.pyc",
     "Code/Weapon/__pycache__",
     "Code/Weapon/weapon.py",
     "Code/Weapon/weapon_scrape.py",
-    "Code/Weapon",
-    "Code/Nuova cartella",
-    "Code/__pycache__/weapon.cpython-311.pyc",
-    "Code/__pycache__",
     "Weapons - Brotato Wiki_files/Shredder.png",
     "Weapons - Brotato Wiki_files/45px-Hammer.png",
     "Weapons - Brotato Wiki_files/Thief_Dagger.png",
@@ -165,7 +184,6 @@
     "Weapons - Brotato Wiki_files/30px-Attack_Speed.png",
     "Weapons - Brotato Wiki_files/45px-Fist.png",
     "Weapons - Brotato Wiki_files/90px-Knife.png",
-    "Weapons - Brotato Wiki_files/Laser_Gun.png",
-    "Welcome.md"
+    "Weapons - Brotato Wiki_files/Laser_Gun.png"
   ]
 }

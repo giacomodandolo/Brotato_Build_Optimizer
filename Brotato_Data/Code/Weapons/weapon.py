@@ -1,6 +1,10 @@
+ALL_ATTRIBUTES = ["Name", "Class", "Special Effects", "Base Damage", "Melee Damage Scaling", "Ranged Damage Scaling", "Elemental Damage Scaling", "Max HP Scaling", "Armor Scaling", "Engineering Scaling", "Range Scaling", "Attack Speed Scaling", "Speed Scaling", "Level Scaling", "Attack Speed", "Crit Damage", "Crit Chance", "Range", "Knockback", "Lifesteal", "Base Price"]
+TIERS = ["**ATTRIBUTE**", "**TIER 1**", "**TIER 2**", "**TIER 3**", "**TIER 4**"]
+
 class WeaponClass:
     N = ""          # String
     C = []          # String
+    SE = ""         # String
     BD = []         # Integer
     MDSc = []       # Float
     RDSc = []       # Float
@@ -18,12 +22,15 @@ class WeaponClass:
     R = []          # Integer
     K = []          # Integer
     L = []          # Float
-    SE = []         # String
     BP = []         # Integer
 
     # Print
     def __str__(self):
 	    return f"Name: {self.N}\nClass: {self.C}\nBase Damage: {self.BD}\nMelee Damage Scaling: {self.MDSc}\nRanged Damage Scaling: {self.RDSc}\nElemental Damage Scaling: {self.EDSc}\nMax HP Scaling: {self.MHPSc}\nArmor Scaling: {self.ASc}\nEngineering Scaling: {self.ESc}\nRange Scaling: {self.RSc}\nAttack Speed Scaling: {self.ASSc}\nSpeed Scaling: {self.SSc}\nLevel Scaling: {self.LSc}\nAttack Speed: {self.AS}\nCrit Damage: {self.CD}\nCrit Chance: {self.CC}\nRange: {self.R}\nKnockback: {self.K}\nLifesteal: {self.L}\nSpecial Effects: {self.SE}\nBase Price: {self.BP}\n"
+
+    def __iter__(self):
+        for attr, value in self.__dict__.iteritems():
+            yield attr, value
 
     # N
     def setN(cls, newN):
@@ -265,7 +272,7 @@ class WeaponClass:
         cls.SE = newSE
 
     def clearSE(cls):
-        cls.SE = []
+        cls.SE = ""
     
     def getSE(cls):
 	    return cls.SE
@@ -279,3 +286,62 @@ class WeaponClass:
     
     def getBP(cls):
 	    return cls.BP
+
+    # Translate into CSV
+    def obtainWeaponCSV(cls):
+        dictWeapon = cls.__dict__
+        returningArray = []
+        
+        for keyD, valueD in dictWeapon.items():
+            string = ""
+            if(type(valueD) is str):
+                returningArray.append(valueD)
+            else:
+                for i, valueW in enumerate(valueD):
+                    if(type(valueW) is str):
+                        if(i == len(valueD) - 1):
+                            string = string + valueW
+                            returningArray.append(string)
+                        else:
+                            string = string + valueW + ";"
+                    else:
+                        returningArray.append(valueW)
+                
+
+        return returningArray
+    
+    # Translate into MD
+    def obtainWeaponMD(cls):
+        dictWeapons = cls.__dict__
+        counter = 1
+
+        fileName = "Brotato_Data\MD\Weapons\\" + dictWeapons["N"] + ".md"
+        mdFile = open(fileName, "w")
+
+        mdFile.write("---\n" + ALL_ATTRIBUTES[counter] + ":\n")
+        for item in dictWeapons["C"]:
+            mdFile.write("- " + item + "\n")
+        counter = counter + 1
+
+        mdFile.write(ALL_ATTRIBUTES[counter] + ": " + dictWeapons["SE"] + "\n---\n#weapon\n\n")
+        counter = counter + 1
+        for tier in TIERS:
+            mdFile.write("| " + tier)
+        mdFile.write(" |\n")
+        for tier in TIERS:
+            mdFile.write("| :---: ")
+        mdFile.write(" |\n")
+
+        for key, item in dictWeapons.items():
+            if(key != "N" and key != "C" and key != "SE"):
+                mdFile.write("| " + ALL_ATTRIBUTES[counter])
+                counter = counter + 1
+                if(type(item) is str):
+                    mdFile.write(item)
+                else:
+                    for i, itemS in enumerate(item):
+                        mdFile.write(" | " + str(itemS) + " ")
+                        if(i != len(item) - 1):
+                            mdFile.write(" ")
+                mdFile.write(" |\n")
+        mdFile.close()

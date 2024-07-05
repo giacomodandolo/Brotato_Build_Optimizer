@@ -13,6 +13,7 @@
     "armor": "number",
     "engineering": "number",
     "range": "number",
-    "attack_speed": "number"
+    "attack_speed": "number",
+    "Base Damage": "number"
   }
 }

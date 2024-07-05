@@ -18,7 +18,7 @@ Each weapon scales with one or more of the stats shown in the table. Each stat i
 | **SHORT ID** |      MD      |      RD       |        ED        |  MHP   |   A   |      E      |   R   |      AS      |   S   |   L   |
 
 ---
-# DATA SPECIFICS
+# DATA
 In this section we will list the characteristics needed to memorize all weapons and the data structure.
 ## Necessary informations
 Every scaling stat, attack speed, crit damage, crit chance, range, knockback, lifesteal and base price value are based on the 4 tiers of the weapon.
@@ -90,17 +90,18 @@ weapon = WeaponClass()
 weapons.append(weapon)
 ```
 ---
-# WEB SCRAPING SPECIFICS
+# WEB SCRAPING
 All data shall be extracted from the [Brotato Wiki page for Weapons](https://brotato.wiki.spellsandguns.com/Weapons).
 You can observe that the data needed to get extracted is all in the tags `<td>`, in intervals of 12 per item, since there are 12 columns in the wiki. So, the first thing to do is to obtain all `<td>` elements.
 ```python
 allTDs = requestSoup.findAll("td")
 ```
-After this, we need to define how to obtain every information needed. 
+After this, we need to define how to obtain every information needed.
 Since it is in intervals of 12 `<td>` per item, we can define a constant `MOD_WEAPONS = 12`, which shall be used to obtain the appropriate index. We shall define the relative position as the position of the td relative to the row, which can have position 0 to 11.
 ```python
 relativePosition = tdIndex % MOD_WEAPONS
 ```
+All of the following code is gonna be inside the function `obtainWeapons()`.
 ## Name
 In relative position 0, we can obtain the name by using the following instruction:
 ```python
@@ -270,4 +271,88 @@ for i, item in enumerate(valuesSplit[1:5]):
 		valueSet.append(float(item.strip("%"))/100)
 	else:
 		valueSet.append(-1)
+```
+---
+# CSV FORMAT
+To translate into CSV format, we must first notice how the Class is formed by an irregular quantity of elements. Because of this, we shall use `;` to separate these values in the CSV format.
+We must first define a function to obtain a CSV format array for a single weapon.
+```python
+def obtainWeaponCSV(weapon):
+	dictWeapon = weapon.__dict__
+	returningArray = []
+
+    for keyD, valueD in dictWeapon.items():
+		string = ""
+		if(type(valueD) is str):
+			returningArray.append(valueD)
+		else:
+			for i, valueW in enumerate(valueD):
+				if(type(valueW) is str):
+					if(i == len(valueD) - 1):
+						string = string + valueW
+						returningArray.append(string)
+					else:
+						string = string + valueW + ";"
+				else:
+					returningArray.append(valueW)
+	return returningArray
+```
+Using the defined function, we shall create another one to format all the weapons.
+```python
+def obtainCSV():
+	csvFile = open('Brotato_Data\CSV\weapons.csv', 'w')
+	csvWriter = csv.writer(csvFile, quoting=csv.QUOTE_NONNUMERIC)
+	for weapon in allWeapons:
+		csvRow = obtainWeaponCSV(weapon)
+		csvWriter.writerow(csvRow)
+	csvFile.close()
+```
+---
+# MD FORMAT
+Each weapon shall have a dedicated page with all the informations associated with it.
+To translate into MD format, we must define the structure of the whole page. 
+At the beginning of each Weapon page, there are gonna be the Class and Special Effects properties. After this, there's gonna be the identifying hashtag #weapon. 
+Ultimately, all the attributes will be put into a table, defining the name of the attribute and the values from tiers 1 to 4.
+To define this structure, we must define a function to create it for a single weapon.
+```python
+def obtainWeaponMD(weapon):
+	dictWeapons = weapon.__dict__
+	counter = 1
+	fileName = "Brotato_Data\MD\Weapons\\" + dictWeapons["N"] + ".md"
+	mdFile = open(fileName, "w")
+	
+	mdFile.write("---\n" + ALL_ATTRIBUTES[counter] + ":\n")
+	for item in dictWeapons["C"]:
+		mdFile.write("- " + item + "\n")
+	counter = counter + 1
+	
+	mdFile.write(ALL_ATTRIBUTES[counter] + ": " + dictWeapons["SE"] + "\n---\n#weapon\n\n")
+	counter = counter + 1
+	for tier in TIERS:
+		mdFile.write("| " + tier)
+	mdFile.write(" |\n")
+	for tier in TIERS:
+		mdFile.write("| :---: ")
+	mdFile.write(" |\n")
+
+	for key, item in dictWeapons.items():
+		if(key != "N" and key != "C" and key != "SE"):
+			mdFile.write("| " + ALL_ATTRIBUTES[counter])
+			counter = counter + 1
+			if(type(item) is str):
+				mdFile.write(item)
+			else:
+				for i, itemS in enumerate(item):
+					mdFile.write(" | " + str(itemS) + " ")
+					if(i != len(item) - 1):
+						mdFile.write(" ")
+			mdFile.write(" |\n")
+			
+    mdFile.close()
+```
+Using the defined function, we shall create another one to format all the weapons.
+```python
+def obtainMD():
+    for item in allWeapons:
+        obtainWeaponMD(item)
 ```
