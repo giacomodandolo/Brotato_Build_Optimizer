@@ -1,4 +1,26 @@
-ALL_ATTRIBUTES = ["Name", "Class", "Special Effects", "Base Damage", "Melee Damage Scaling", "Ranged Damage Scaling", "Elemental Damage Scaling", "Max HP Scaling", "Armor Scaling", "Engineering Scaling", "Range Scaling", "Attack Speed Scaling", "Speed Scaling", "Level Scaling", "Attack Speed", "Crit Damage", "Crit Chance", "Range", "Knockback", "Lifesteal", "Base Price"]
+ALL_ATTRIBUTES = {
+    "N":        "name", 
+    "C":        "class", 
+    "SE":       "special_effects", 
+    "BD":       "base_damage", 
+    "MDSc":     "melee_damage_scaling", 
+    "RDSc":     "ranged_damage_scaling", 
+    "EDSc":     "elemental_damage_scaling", 
+    "MHPSc":    "max_hp_scaling", 
+    "ASc":      "armor_scaling", 
+    "ESc":      "engineering_scaling", 
+    "RSc":      "range_scaling", 
+    "ASSc":     "attack_speed_scaling", 
+    "SSc":      "speed_scaling", 
+    "LSc":      "level_scaling", 
+    "AS":       "attack_speed", 
+    "CD":       "crit_damage", 
+    "CC":       "crit_chance", 
+    "R":        "range", 
+    "K":        "knockback", 
+    "L":        "lifesteal", 
+    "BP":       "base_price"
+}
 TIERS = ["**ATTRIBUTE**", "**TIER 1**", "**TIER 2**", "**TIER 3**", "**TIER 4**"]
 
 class WeaponClass:
@@ -313,35 +335,25 @@ class WeaponClass:
     # Translate into MD
     def obtainWeaponMD(cls):
         dictWeapons = cls.__dict__
-        counter = 1
 
-        fileName = "Brotato_Data\MD\Weapons\\" + dictWeapons["N"] + ".md"
-        mdFile = open(fileName, "w")
-
-        mdFile.write("---\n" + ALL_ATTRIBUTES[counter] + ":\n")
-        for item in dictWeapons["C"]:
-            mdFile.write("- " + item + "\n")
-        counter = counter + 1
-
-        mdFile.write(ALL_ATTRIBUTES[counter] + ": " + dictWeapons["SE"] + "\n---\n#weapon\n\n")
-        counter = counter + 1
-        for tier in TIERS:
-            mdFile.write("| " + tier)
-        mdFile.write(" |\n")
-        for tier in TIERS:
-            mdFile.write("| :---: ")
-        mdFile.write(" |\n")
-
-        for key, item in dictWeapons.items():
-            if(key != "N" and key != "C" and key != "SE"):
-                mdFile.write("| " + ALL_ATTRIBUTES[counter])
-                counter = counter + 1
-                if(type(item) is str):
-                    mdFile.write(item)
-                else:
-                    for i, itemS in enumerate(item):
-                        mdFile.write(" | " + str(itemS) + " ")
-                        if(i != len(item) - 1):
-                            mdFile.write(" ")
-                mdFile.write(" |\n")
-        mdFile.close()
+        for i in range(0, 4):
+            if(dictWeapons["BP"][i] != -1):
+                fileName = "Brotato_Data\MD\Weapons\\" + dictWeapons["N"].replace(" ", "_") + "_R" + str(i+1) + ".md"
+                mdFile = open(fileName, "w")
+                mdFile.write("---\n")
+                for key, item in dictWeapons.items():
+                    if (key != 'N'):
+                        mdFile.write(ALL_ATTRIBUTES[key] + ": ")
+                        if(key != 'C'):
+                            if(type(item) is str):
+                                mdFile.write(item)
+                            else:
+                                mdFile.write(str(item[i]))
+                            mdFile.write("\n")
+                        else:
+                            for itemC in item:
+                                mdFile.write("\n - " + itemC)
+                            mdFile.write("\n")
+                mdFile.write("---")
+                mdFile.write("\n#weapon")
+                mdFile.close()

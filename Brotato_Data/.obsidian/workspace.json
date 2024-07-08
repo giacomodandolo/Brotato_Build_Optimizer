@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "3e2ccef53f8e96a8",
+        "id": "3d0f5fae2de864a0",
         "type": "tabs",
         "children": [
           {
-            "id": "3199bb94a8efc636",
+            "id": "f24a71d9943a76f0",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -138,7 +138,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3199bb94a8efc636",
+  "active": "f24a71d9943a76f0",
   "lastOpenFiles": [
     "Home.md",
     "Weapons.md",

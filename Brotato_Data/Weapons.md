@@ -302,57 +302,45 @@ Using the defined function, we shall create another one to format all the weapon
 def obtainCSV():
 	csvFile = open('Brotato_Data\CSV\weapons.csv', 'w')
 	csvWriter = csv.writer(csvFile, quoting=csv.QUOTE_NONNUMERIC)
-	for weapon in allWeapons:
-		csvRow = obtainWeaponCSV(weapon)
+	for weaponObj in allWeapons:
+		csvRow = weaponObj.obtainWeaponCSV()
 		csvWriter.writerow(csvRow)
 	csvFile.close()
 ```
 ---
 # MD FORMAT
-Each weapon shall have a dedicated page with all the informations associated with it.
+Each weapon and rarity shall have a dedicated page with all the informations associated with it.
 To translate into MD format, we must define the structure of the whole page. 
-At the beginning of each Weapon page, there are gonna be the Class and Special Effects properties. After this, there's gonna be the identifying hashtag #weapon. 
-Ultimately, all the attributes will be put into a table, defining the name of the attribute and the values from tiers 1 to 4.
+Each Weapon page will have all the properties at the start of the page, in a structure suitable for a dataview on Obsidian. At the end, there's gonna be the identifying hashtag #weapon. 
 To define this structure, we must define a function to create it for a single weapon.
 ```python
-def obtainWeaponMD(weapon):
-	dictWeapons = weapon.__dict__
-	counter = 1
-	fileName = "Brotato_Data\MD\Weapons\\" + dictWeapons["N"] + ".md"
-	mdFile = open(fileName, "w")
-	
-	mdFile.write("---\n" + ALL_ATTRIBUTES[counter] + ":\n")
-	for item in dictWeapons["C"]:
-		mdFile.write("- " + item + "\n")
-	counter = counter + 1
-	
-	mdFile.write(ALL_ATTRIBUTES[counter] + ": " + dictWeapons["SE"] + "\n---\n#weapon\n\n")
-	counter = counter + 1
-	for tier in TIERS:
-		mdFile.write("| " + tier)
-	mdFile.write(" |\n")
-	for tier in TIERS:
-		mdFile.write("| :---: ")
-	mdFile.write(" |\n")
-
-	for key, item in dictWeapons.items():
-		if(key != "N" and key != "C" and key != "SE"):
-			mdFile.write("| " + ALL_ATTRIBUTES[counter])
-			counter = counter + 1
-			if(type(item) is str):
-				mdFile.write(item)
-			else:
-				for i, itemS in enumerate(item):
-					mdFile.write(" | " + str(itemS) + " ")
-					if(i != len(item) - 1):
-						mdFile.write(" ")
-			mdFile.write(" |\n")
-			
-    mdFile.close()
+def obtainWeaponMD(cls):
+	dictWeapons = cls.__dict__
+	    for i in range(0, 4):
+			if(dictWeapons["BP"][i] != -1):
+				fileName = "Brotato_Data\MD\Weapons\\" + dictWeapons["N"].replace(" ", "_") + "_R" + str(i+1) + ".md"
+				mdFile = open(fileName, "w")
+				mdFile.write("---\n")
+				for key, item in dictWeapons.items():
+                    if (key != 'N'):
+                        mdFile.write(ALL_ATTRIBUTES[key] + ": ")
+                        if(key != 'C'):
+                            if(type(item) is str):
+                                mdFile.write(item)
+                            else:
+                                mdFile.write(str(item[i]))
+                            mdFile.write("\n")
+                        else:
+                            for itemC in item:
+                                mdFile.write("\n - " + itemC)
+                            mdFile.write("\n")
+                mdFile.write("---")
+                mdFile.write("\n#weapon")
+                mdFile.close()
 ```
 Using the defined function, we shall create another one to format all the weapons.
 ```python
 def obtainMD():
     for item in allWeapons:
-        obtainWeaponMD(item)
+	        item.obtainWeaponMD()
 ```

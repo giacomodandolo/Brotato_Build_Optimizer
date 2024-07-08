@@ -1,0 +1,179 @@
+{
+  "main": {
+    "id": "e1a38a17aaf9d73a",
+    "type": "split",
+    "children": [
+      {
+        "id": "4a9927260a3cecba",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "797064ff9d6963e3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Brotato_Data/Weapons.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9226e7e7da6a3e41",
+    "type": "split",
+    "children": [
+      {
+        "id": "e0be62a894a2e9cf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "39654b2621e8e559",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "17b67a243170d1eb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e22483190f02aa95",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "643a06ff62a089ae",
+    "type": "split",
+    "children": [
+      {
+        "id": "2b9ef16bcbf7c238",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "022ef225759c75f9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Brotato_Data/Weapons.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b9d8cf000bb77b5b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Brotato_Data/Weapons.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "827d44a9e69e89f5",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "41b799c63b4efbc4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Brotato_Data/Weapons.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "797064ff9d6963e3",
+  "lastOpenFiles": [
+    "Brotato_Data/Items.md",
+    "Brotato_Data/Home.md",
+    "Brotato_Data/MD/Weapons/Shredder_R3.md",
+    "Brotato_Data/MD/Weapons/Shredder_R2.md",
+    "Brotato_Data/MD/Weapons/Shredder_R1.md",
+    "Brotato_Data/MD/Weapons/Rocket_Launcher_R4.md",
+    "Brotato_Data/MD/Weapons/Rocket_Launcher_R3.md",
+    "Brotato_Data/MD/Weapons/Rocket_Launcher_R2.md",
+    "Brotato_Data/MD/Weapons/Revolver_R4.md",
+    "Brotato_Data/MD/Weapons/Revolver_R3.md",
+    "Brotato_Data/MD/Weapons/Revolver_R2.md",
+    "Brotato_Data/MD/Weapons/Revolver_R1.md",
+    "Brotato_Data/MD/Weapons/Potato_Thrower_R4.md",
+    "Brotato_Data/MD/Weapons/Potato_Thrower_R3.md",
+    "Brotato_Data/MD/Weapons/Potato_Thrower_R2.md",
+    "Brotato_Data/MD/Weapons/Pistol_R4.md",
+    "Brotato_Data/MD/Weapons/Pistol_R3.md",
+    "Brotato_Data/MD/Weapons/Pistol_R2.md",
+    "Brotato_Data/MD/Weapons/Pistol_R1.md",
+    "Brotato_Data/MD/Weapons/Obliterator_R4.md",
+    "Brotato_Data/MD/Weapons/Obliterator_R3.md",
+    "Brotato_Data/MD/Weapons/Nuclear_Launcher_R4.md",
+    "Brotato_Data/MD/Weapons/Nuclear_Launcher_R3.md",
+    "Brotato_Data/MD/Weapons/Chain_Gun_R4.md",
+    "Brotato_Data/MD/Weapons/Wrench_R4.md",
+    "Brotato_Data/MD/Weapons/Wrench_R3.md"
+  ]
+}

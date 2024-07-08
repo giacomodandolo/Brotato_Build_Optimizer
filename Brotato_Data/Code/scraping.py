@@ -21,11 +21,11 @@ def createWindow():
         
         if event == "To CSV":
             ws.obtainCSV()
-            window["updated"].update("CSV obtained!")
+            window["updated"].update("CSV updated!")
 
         if event == "To MD":
             ws.obtainMD()
-            window["updated"].update("MD obtained!")
+            window["updated"].update("MD updated!")
 
         if event == sg.WIN_CLOSED:
             break
